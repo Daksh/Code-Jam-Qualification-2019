@@ -25,21 +25,30 @@ for i in range(1,t+1):
 	for j in range(len(primes)):
 		mapping[primes[j]]=alph[j]
 
-	numList=[]
-	for j in range(1,len(num)):
-		g = gcd(num[j-1],num[j])
-		if num[j-1] == num[j]:
-			g = int(sqrt(num[j]))
+	numList = [-1]*(l+1)
+	j = 0
+	while num[j]==num[j+1]:
+		j+=1
+		# numList.append(-1)
+	g = gcd(num[j],num[j+1])
 
-		if len(numList) == 0:
-			numList.append(num[j-1]//g)
-			numList.append(g)
-		
-		assert numList[-2] == num[j-1]//g
-		assert numList[-1] == g
-		numList.append(num[j]//g)
+	numList[j] = num[j]//g
+	numList[j+1] = g
 
-	print('Case #'+str(i)+': ',end='')
+	#Back-tracking, to fill in the positions
+	# that we did not know earlier
+	tem = j-1
+	while tem >= 0:
+		numList[tem] = num[tem] // numList[tem+1]
+		tem -= 1
+
+	j += 1
+	# Moving on
+	while j < l:
+		numList[j+1] = num[j] // numList[j]
+		j += 1
+
+	# print('Case #'+str(i)+': ',end='')
 	for ind in numList:
 		print(mapping[ind],end='')
 	print()

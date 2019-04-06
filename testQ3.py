@@ -1,7 +1,6 @@
-import random, string
-import logging
-logging.basicConfig(filename='expectedOut', level=logging.DEBUG, format='%(message)s')
-# logging.basicConfig(stream=sys.stderr, level=logging.DEBUG)
+import random, string, sys, logging
+
+logging.basicConfig(stream=sys.stderr, level=logging.DEBUG, format='%(message)s')
 
 def primes(n):
     out = list()
@@ -13,7 +12,7 @@ def primes(n):
                 sieve[i] = False
     return out
 
-primeSet = primes(10000)
+primeSet = primes(10**7)
 t = 1000
 print(t)
 
