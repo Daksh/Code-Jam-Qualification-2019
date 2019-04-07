@@ -9,12 +9,10 @@ int main(){
         printf("Case #%d: ", cNum);
         int n;
         scanf("%d", &n);
-        char in[50001];
+        char in[2*n];
         scanf("%s", in);
 
-        int lx=0,ly=0,mx=0,my=0,i;
-        char prev='x';
-
+        int i;
         for(i=0; i<2*n-2; i++){
             if(in[i] == 'S') printf("%c", 'E');
             else printf("%c", 'S');
